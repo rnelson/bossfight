@@ -28,11 +28,11 @@ class User < ActiveRecord::Base
   end
 
   def projects
-    Project.where('employee_id=? AND status!=?', id, Constants.get_status_id(:deleted)).order(:priority)
+    Project.where('employee_id=? AND status>=?', id, Constants.get_status_id(:deleted)).order(:priority)
   end
 
   def recent_projects
-    query = 'employee_id=? AND status!=? AND updated_at>=?'
+    query = 'employee_id=? AND status>=? AND updated_at>=?'
     Project.where(query,
                   id,
                   Constants.get_status_id(:deleted),
