@@ -34,6 +34,11 @@ class Boss < ActiveRecord::Base
   def self.set_employees(id, employees)
     Boss.delete_all("boss_id = #{id}")
 
+    # Add the user as their own boss again
+    record = { boss_id: id, employee_id: id }
+    b = Boss.new record
+    b.save
+
     employees.each do |employee_id|
       record = { boss_id: id, employee_id: employee_id }
       b = Boss.new record
