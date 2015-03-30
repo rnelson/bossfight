@@ -48,3 +48,8 @@ group :development, :test do
   gem 'spring'
 end
 
+group :production do
+  # I use PostgreSQL for production
+  gem 'pg'
+end
+

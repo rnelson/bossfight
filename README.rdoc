@@ -3,10 +3,15 @@
 Bossfight uses the following:
 
 * Ruby 2.2.0
-* SQlite3 (development), PostgreSQL 9 (production)
+* SQlite3
 
 Setup:
 
+* <tt>cp config/database.yml.example config/database.yml.example</tt>
+* Edit <tt>config/database.yml</tt> to match your desired database
+* If necessary, add required gem(s) for your database
+* <tt>cp config/secrets.yml.example config/secrets.yml</tt>
+* Edit <tt>config/secrets.yml</tt> to set new secrets
 * <tt>rake db:setup</tt>
 * <tt>rake db:seed</tt>
 * Log in with email <em>admin@example.com</em>, password <em>password</em>
