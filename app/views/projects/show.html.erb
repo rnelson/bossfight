@@ -16,11 +16,6 @@
 </p>
 
 <p>
-  <strong>Priority:</strong>
-  <%= @project.priority %>
-</p>
-
-<p>
   <strong>Category:</strong>
   <%= Category.find_by_id(@project.category_id).name %>
 </p>
