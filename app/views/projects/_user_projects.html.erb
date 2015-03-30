@@ -1,0 +1,37 @@
+<% if @user.projects.count > 0 %>
+  <div id="user-projects">
+    <% if @user.id == session[:user_id] %>
+      <h1>My Projects</h1>
+    <% else %>
+      <h1><%= @user.name.possessive %> Projects</h1>
+    <% end %>
+
+    <ul class="project-list" id="projects-list-for-<%= @user.id %>">
+      <% @user.recent_projects.each do |project| %>
+        <li class="project-item" id="<%= project.id %>">
+          <span class="status <%= Constants.get_status_css_class_by_id(project.status) %>"><%= project.name %></span>
+          <span class="project-actions">
+            (<%= link_to 'Details', project %> | #<%= Category.find_by_id(project.category_id).name %> |
+              <%= User.find_by_id(project.boss_id).email_style_name %> | <%= time_ago_in_words(project.created_at) %> ago)
+          </span>
+        </li>
+      <% end %>
+    </ul>
+
+    <%= form_tag(projects_prioritize_path) do %>
+      <div class="hidden">
+        <%= hidden_field_tag(:employee_id, @user.id) %>
+        <% @user.recent_projects.each do |project| %>
+          <%
+             field_name = 'priorities[' + project.id.to_s + ']'
+             field_id = @user.id.to_s + '-' + project.id.to_s
+          %>
+          <%= hidden_field_tag(field_name, project.priority, :id => field_id) %>
+        <% end %>
+      </div>
+      <div class="submit">
+        <%= submit_tag 'Update Priorities' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

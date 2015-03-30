@@ -1,0 +1,23 @@
+// Place all the styles related to the Projects controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.projects {
+  ul.project-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+
+    li {
+      margin: 5px;
+      padding: 5px;
+      width: 750px;
+    }
+  }
+
+  .project-actions {
+    margin-left: 10px;
+    font-size: xx-small;
+  }
+}

@@ -1,0 +1,38 @@
+<h1>Projects</h1>
+
+<p id="notice"><%= notice %></p>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Status</th>
+    <th>Priority</th>
+    <th>Category</th>
+    <th>Assigned By</th>
+    <th>Assigned To</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @projects.each do |project| %>
+    <tr>
+      <td><%= project.name %></td>
+      <td><%= project.description %></td>
+      <td><%= Constants.get_status_name_by_id(project.status) %></td>
+      <td><%= project.priority %></td>
+      <td><%= Category.find_by_id(project.category_id).name %></td>
+      <td><%= User.find_by_id(project.boss_id).name %></td>
+      <td><%= User.find_by_id(project.employee_id).name %></td>
+      <td><%= link_to 'View', project %></td>
+      <td><%= link_to 'Edit', edit_project_path(project) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Project', new_project_path %>

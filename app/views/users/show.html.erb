@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First Name:</strong>
+  <%= @user.first_name %>
+</p>
+
+<p>
+  <strong>Last Name:</strong>
+  <%= @user.last_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>User Type:</strong>
+  <%= Constants.get_access_name_by_id @user.access_level %>
+</p>
+
+<p>
+  <strong>Bosses:</strong>
+  <%= Boss.bosses_for(@user.id).collect { |u| u.name }.join(', ') %>
+</p>
+
+<p>
+  <strong>Employees:</strong>
+  <%= Boss.employees_for(@user.id).collect { |u| u.name }.join(', ') %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

@@ -1,0 +1,34 @@
+<h1>Bosses</h1>
+
+<% if notice %>
+  <p id="notice"><%= notice %></p>
+<% end %>
+
+<% @users.each do |user| %>
+  <div class="user">
+    <strong><%= user.name %></strong>
+    <!-- <form method="post" action="/admin/bosses"> -->
+    <%= form_tag do %>
+      <div class="employees">
+        <%= hidden_field_tag(:boss_id, user.id) %>
+        <% @users.each do |inner_user| %>
+          <%
+             show = true
+             checked = false
+
+             show = false if user.id == inner_user.id
+             @employees[user.id.to_s].each { |e| checked = true if e.id == inner_user.id }
+          %>
+          <% if show %>
+            <%= check_box_tag 'employees[]', inner_user.id, checked %> <%= inner_user.name %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="submit">
+        <%= submit_tag 'Update' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<!-- <%= @employees %> -->

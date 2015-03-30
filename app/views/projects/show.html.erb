@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @project.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @project.description %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= Constants.get_status_name_by_id(@project.status) %>
+</p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= @project.priority %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= Category.find_by_id(@project.category_id).name %>
+</p>
+
+<p>
+  <strong>Assigned by:</strong>
+  <%= User.find_by_id(@project.boss_id).name %> <%= time_ago_in_words(@project.created_at) %> ago (<%= @project.created_at %>)
+</p>
+
+<p>
+  <strong>Assigned to:</strong>
+  <%= User.find_by_id(@project.employee_id).name %>
+</p>
+
+<%= link_to 'Delete', @project, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

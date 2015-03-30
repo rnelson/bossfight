@@ -1,0 +1,12 @@
+== Bossfight
+
+Bossfight uses the following:
+
+* Ruby 2.2.0
+* SQlite3 (development), PostgreSQL 9 (production)
+
+Setup:
+
+* <tt>rake db:setup</tt>
+* <tt>rake db:seed</tt>
+* Log in with email <em>admin@example.com</em>, password <em>password</em>
