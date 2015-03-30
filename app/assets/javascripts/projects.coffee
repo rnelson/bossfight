@@ -14,12 +14,16 @@ $ ->
         # Get an ordered list of the project IDs
         ordered = $(this).sortable('toArray')
 
-        # Update the hidden fields on the page to match the new ordering
         $.each ordered, (index, value) ->
           field = employee_id + '-' + value
           priority = (index + 1)
 
+          # Update the hidden fields on the page to match the new ordering
           $('#' + field).attr('value', priority)
+
+          # Update the number in the list
+          $('#priority-' + field).text(priority + '.')
+
           return
 
         return
