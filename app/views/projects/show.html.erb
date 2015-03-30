@@ -27,7 +27,7 @@
 
 <p>
   <strong>Assigned by:</strong>
-  <%= User.find_by_id(@project.boss_id).name %> <%= time_ago_in_words(@project.created_at) %> ago (<%= @project.created_at %>)
+  <%= User.find_by_id(@project.boss_id).name %>, <%= time_ago_in_words(@project.created_at) %> ago (<%= @project.created_at %>)
 </p>
 
 <p>
