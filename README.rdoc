@@ -14,4 +14,5 @@ Setup:
 * Edit <tt>config/secrets.yml</tt> to set new secrets
 * <tt>rake db:setup</tt>
 * <tt>rake db:seed</tt>
+* <tt>RAILS_ENV=production rake assets:precompile</tt> (if production)
 * Log in with email <em>admin@example.com</em>, password <em>password</em>
