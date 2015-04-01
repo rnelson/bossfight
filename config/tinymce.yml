@@ -1,4 +1,8 @@
 toolbar:
-  - styleselect | bold italic | undo redo | alignleft aligncenter alignright | link
+  - styleselect | bold italic | undo redo | alignleft aligncenter alignright
+  - link | hr | insertdatetime | table
 plugins:
   - link
+  - table
+  - insertdatetime
+  - hr
