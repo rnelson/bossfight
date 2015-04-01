@@ -33,7 +33,11 @@
     <%= tinymce %>
   </div>
   <div class="field hidden">
-    <input type="hidden" name="project[boss_id]" value="<%= session[:user_id] %>" />
+    <%
+       project_boss = @project.boss_id
+       project_boss = session[:user_id] if project_boss.nil?
+    %>
+    <input type="hidden" name="project[boss_id]" value="<%= project_boss %>" />
   </div>
   <div class="actions">
     <%= f.submit %>
