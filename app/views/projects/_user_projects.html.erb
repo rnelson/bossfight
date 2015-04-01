@@ -8,6 +8,12 @@
 
     <ul class="project-list" id="projects-list-for-<%= @user.id %>">
       <% @user.recent_projects.each do |project| %>
+        <%
+          updated_text = ''
+          if project.created_at != project.updated_at
+            updated_text = ", updated #{time_ago_in_words(project.updated_at)} ago"
+          end
+        %>
         <li class="project-item" id="<%= project.id %>">
           <span class="status <%= Constants.get_status_css_class_by_id(project.status) %>">
             <span id="priority-<%= @user.id.to_s + '-' + project.id.to_s %>"><%= project.priority %>.</span>
@@ -15,7 +21,7 @@
           </span>
           <span class="project-actions">
             (<%= link_to 'Details', project %> | #<%= Category.find_by_id(project.category_id).name %> |
-              <%= User.find_by_id(project.boss_id).email_style_name %> | <%= time_ago_in_words(project.created_at) %> ago)
+              <%= User.find_by_id(project.boss_id).email_style_name %> | <%= time_ago_in_words(project.created_at) %> ago<%= updated_text %>)
           </span>
         </li>
       <% end %>
