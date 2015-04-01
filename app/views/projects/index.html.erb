@@ -1,11 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <div class="projects">
-  <p>
-    This page lists all projects for you and any of your employees. To change the priority, simply drag
-    items up and down in the list.
-  </p>
-
   <%
      # List projects for this user
      @user = User.find_by_id(session[:user_id])
