@@ -21,7 +21,7 @@
           </span>
           <span class="project-actions">
             (<%= link_to 'Details', project %> | #<%= Category.find_by_id(project.category_id).name %> |
-              <%= User.find_by_id(project.boss_id).email_style_name %> | <%= time_ago_in_words(project.created_at) %> ago<%= updated_text %>)
+              <%= User.find_by_id(project.boss_id).name %> | <%= time_ago_in_words(project.created_at) %> ago<%= updated_text %>)
           </span>
         </li>
       <% end %>
