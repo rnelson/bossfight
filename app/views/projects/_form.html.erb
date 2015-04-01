@@ -29,7 +29,8 @@
   </div>
   <div class="field">
     <%= f.label :description %>:<br>
-    <%= f.text_area :description, size: "80x20" %>
+    <%= f.text_area :description, :class => "tinymce", :rows => 20, :cols => 1200 %>
+    <%= tinymce %>
   </div>
   <div class="field hidden">
     <input type="hidden" name="project[boss_id]" value="<%= session[:user_id] %>" />

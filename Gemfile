@@ -34,6 +34,9 @@ gem 'possessive'
 # Use Unicorn as the app server
 gem 'unicorn'
 
+# Use TinyMCE as a textarea editor
+gem 'tinymce-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
