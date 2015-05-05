@@ -17,6 +17,13 @@
   <%= Constants.get_status_name_by_id(@project.status) %>
 </p>
 
+<% if not @project.due_at.nil? %>
+  <p>
+    <strong>Due:</strong>
+    <%= @project.due_at %> (<%= time_ago_in_words(@project.due_at) %>)
+  </p>
+<% end %>
+
 <p>
   <strong>Category:</strong>
   <%= Category.find_by_id(@project.category_id).name %>

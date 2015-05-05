@@ -20,6 +20,10 @@
     <%= select('project', 'employee_id', Boss.employees_for_select(session[:user_id]), {include_blank: false}) %>
   </div>
   <div class="field">
+    <%= label_tag :due_at, 'Due date:' %>
+    <%= f.text_field :due_at, :class => 'datepicker', :size => 10, :maxlength => 10 %>
+  </div>
+  <div class="field">
     <%= label_tag :status, 'Status:' %>
     <%= select('project', 'status', Constants.statuses, {include_blank: false}) %>
   </div>

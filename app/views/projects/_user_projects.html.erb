@@ -12,11 +12,15 @@
           time_text = ''
           
           # Created
-          time_text += "added #{time_ago_in_words(project.created_at)} ago"
+          time_text += "created #{time_ago_in_words(project.created_at)} ago"
           
           # Updated
-          if project.created_at != project.updated_at
-            time_text += ", updated #{time_ago_in_words(project.updated_at)} ago"
+          if project.created_at != project.modified_at
+            time_text += ", updated #{time_ago_in_words(project.modified_at)} ago"
+          end
+
+          if not project.due_at.nil?
+            time_text += ", due in #{time_ago_in_words(project.due_at)} (#{project.due_at})"
           end
         %>
         <li class="project-item" id="<%= project.id %>">

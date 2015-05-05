@@ -30,6 +30,8 @@ class ProjectsController < ApplicationController
 
     @project.priority = user.projects.count + 1
     @project.category_id = params[:project][:category_id] # TODO: bug
+    @project.due_at = params[:project][:due_at] if not params[:project][:due_at].nil? # TODO: bug
+    @project.modified_at = DateTime.now
 
     respond_to do |format|
       if @project.save
@@ -46,6 +48,8 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1.json
   def update
     @project.category_id = params[:project][:category_id] # TODO: bug
+    @project.due_at = params[:project][:due_at] if not params[:project][:due_at].nil? # TODO: bug
+    @project.modified_at = DateTime.now
 
     respond_to do |format|
       if @project.update(project_params)
@@ -63,6 +67,7 @@ class ProjectsController < ApplicationController
   def destroy
     name = @project.name
     @project.status = Constants.get_status_id(:deleted)
+    @project.modified_at = DateTime.now
     @project.save
 
     respond_to do |format|
