@@ -93,6 +93,13 @@ class Constants
   def self.get_status_name(s)
     self.status[s.to_sym][:name]
   end
+  def self.get_status_by_id(id)
+    Constants.status.each do |k, v|
+      if v[:id] == id
+        return v
+      end
+    end
+  end
   def self.get_status_name_by_id(id)
     Constants.status.each do |k, v|
       if v[:id] == id

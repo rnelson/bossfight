@@ -35,31 +35,39 @@
             updated_text = "#{time_ago_in_words(project.modified_at)} ago"
           end
 
+          # Due
           if not project.due_at.nil?
             due_text = "#{project.due_at}"
+          end
+ 
+          # If the task is marked done, we want to make that more obvious
+          # than just a single field; add strikethrough on more columns
+          extra_class = ''
+          if Constants.get_status_by_id(project.status)[:id] == Constants.done
+            extra_class="status " + Constants.get_status_css_class_by_id(project.status)
           end
         %>
         <tr class="project-item" id="<%= project.id %>">
           <td id="priority-<%= @user.id.to_s + '-' + project.id.to_s %>">
             <%= project.priority %>
           </td>
-          <td>
+          <td class="<%= extra_class %>">
             <%= project.name %>
           </td>
-          <td>
+          <td class="<%= extra_class %>">
             <%= Category.find_by_id(project.category_id).name %>
           </td>
           <td class="status <%= Constants.get_status_css_class_by_id(project.status) %>">
             <%= Constants.get_status_name_by_id(project.status) %>
           </td>
-          <td>
+          <td class="<%= extra_class %>">
             <%= User.find_by_id(project.boss_id).name %>
           </td>
-          <td><%= created_text %>
-          <td><%= updated_text %>
-          <td><%= due_text %>
+          <td class="<%= extra_class %>"><%= created_text %>
+          <td class="<%= extra_class %>"><%= updated_text %>
+          <td class="<%= extra_class %>"><%= due_text %>
           <td>
-            <%= link_to 'Details', project %>,
+            <%= link_to 'View', project %>,
             <%= link_to 'Edit', edit_project_path(project) %>
           </td>
         </tr>
