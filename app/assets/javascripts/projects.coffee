@@ -4,7 +4,7 @@
 
 $ ->
   $('.project-list').each ->
-    employee_id = $(this).attr('id').substring 18
+    employee_id = $(this).attr('id').substring 17
 
     $(this).sortable(
       tolerance: 'pointer'
@@ -22,7 +22,7 @@ $ ->
           $('#' + field).attr('value', priority)
 
           # Update the number in the list
-          $('#priority-' + field).text(priority + '.')
+          $('#priority-' + field).text(priority)
 
           return
 

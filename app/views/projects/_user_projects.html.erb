@@ -6,35 +6,66 @@
       <h1><%= @user.name.possessive %> Projects</h1>
     <% end %>
 
-    <ul class="project-list" id="projects-list-for-<%= @user.id %>">
+    <table class="project-list" id="project-list-for-<%= @user.id %>">
+      <thead>
+        <tr>
+          <td>#</td>
+          <td>Project Name</td>
+          <td>Category</td>
+          <td>Status</td>
+          <td>Assigned By</td>
+          <td>Created</td>
+          <td>Updated</td>
+          <td>Due Date</td>
+          <td>Actions</td>
+        </tr>
+      </thead>
+      <tbody>
       <% @user.recent_projects.each do |project| %>
         <%
-          time_text = ''
+          created_text = ''
+          updated_text = ''
+          due_text = ''
           
           # Created
-          time_text += "created #{time_ago_in_words(project.created_at)} ago"
+          created_text = "#{time_ago_in_words(project.created_at)} ago"
           
           # Updated
-          if project.created_at != project.modified_at
-            time_text += ", updated #{time_ago_in_words(project.modified_at)} ago"
+          if not project.modified_at.nil?
+            updated_text = "#{time_ago_in_words(project.modified_at)} ago"
           end
 
           if not project.due_at.nil?
-            time_text += ", due in #{time_ago_in_words(project.due_at)} (#{project.due_at})"
+            due_text = "#{project.due_at}"
           end
         %>
-        <li class="project-item" id="<%= project.id %>">
-          <span class="status <%= Constants.get_status_css_class_by_id(project.status) %>">
-            <span id="priority-<%= @user.id.to_s + '-' + project.id.to_s %>"><%= project.priority %>.</span>
+        <tr class="project-item" id="<%= project.id %>">
+          <td id="priority-<%= @user.id.to_s + '-' + project.id.to_s %>">
+            <%= project.priority %>
+          </td>
+          <td>
             <%= project.name %>
-          </span>
-          <span class="project-actions">
-            (<%= link_to 'Details', project %> | #<%= Category.find_by_id(project.category_id).name %> |
-              <%= User.find_by_id(project.boss_id).name %> | <%= time_text %>)
-          </span>
-        </li>
+          </td>
+          <td>
+            <%= Category.find_by_id(project.category_id).name %>
+          </td>
+          <td class="status <%= Constants.get_status_css_class_by_id(project.status) %>">
+            <%= Constants.get_status_name_by_id(project.status) %>
+          </td>
+          <td>
+            <%= User.find_by_id(project.boss_id).name %>
+          </td>
+          <td><%= created_text %>
+          <td><%= updated_text %>
+          <td><%= due_text %>
+          <td>
+            <%= link_to 'Details', project %>,
+            <%= link_to 'Edit', edit_project_path(project) %>
+          </td>
+        </tr>
       <% end %>
-    </ul>
+      </tbody>
+    </table>
 
     <%= form_tag(projects_prioritize_path) do %>
       <div class="hidden">
