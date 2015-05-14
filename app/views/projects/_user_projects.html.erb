@@ -47,30 +47,34 @@
             extra_class="status " + Constants.get_status_css_class_by_id(project.status)
           end
         %>
-        <tr class="project-item" id="<%= project.id %>">
-          <td id="priority-<%= @user.id.to_s + '-' + project.id.to_s %>">
-            <%= project.priority %>
-          </td>
-          <td class="<%= extra_class %>">
-            <%= project.name %>
-          </td>
-          <td class="<%= extra_class %>">
-            <%= Category.find_by_id(project.category_id).name %>
-          </td>
-          <td class="status <%= Constants.get_status_css_class_by_id(project.status) %>">
-            <%= Constants.get_status_name_by_id(project.status) %>
-          </td>
-          <td class="<%= extra_class %>">
-            <%= User.find_by_id(project.boss_id).name %>
-          </td>
-          <td class="<%= extra_class %>"><%= created_text %>
-          <td class="<%= extra_class %>"><%= updated_text %>
-          <td class="<%= extra_class %>"><%= due_text %>
-          <td>
-            <%= link_to 'View', project %>,
-            <%= link_to 'Edit', edit_project_path(project) %>
-          </td>
-        </tr>
+	<%
+          if not (Constants.get_status_by_id(project.status)[:id] == Constants.done and project.modified_at <= 2.weeks.ago)
+	%>
+          <tr class="project-item" id="<%= project.id %>">
+            <td id="priority-<%= @user.id.to_s + '-' + project.id.to_s %>">
+              <%= project.priority %>
+            </td>
+            <td class="<%= extra_class %>">
+              <%= project.name %>
+            </td>
+            <td class="<%= extra_class %>">
+              <%= Category.find_by_id(project.category_id).name %>
+            </td>
+            <td class="status <%= Constants.get_status_css_class_by_id(project.status) %>">
+              <%= Constants.get_status_name_by_id(project.status) %>
+            </td>
+            <td class="<%= extra_class %>">
+              <%= User.find_by_id(project.boss_id).name %>
+            </td>
+            <td class="<%= extra_class %>"><%= created_text %>
+            <td class="<%= extra_class %>"><%= updated_text %>
+            <td class="<%= extra_class %>"><%= due_text %>
+            <td>
+              <%= link_to 'View', project %>,
+              <%= link_to 'Edit', edit_project_path(project) %>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
       </tbody>
     </table>
