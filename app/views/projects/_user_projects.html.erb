@@ -48,7 +48,12 @@
           end
         %>
 	<%
-          if not (Constants.get_status_by_id(project.status)[:id] == Constants.done and project.modified_at <= 2.weeks.ago)
+          project_is_done = Constants.get_status_by_id(project.status)[:id] == Constants.done
+          project_is_deleted = Constants.get_status_by_id(project.status)[:id] == Constants.deleted
+          modified_within_3_days = project.modified_at <= 3.days.ago
+          modified_within_2_weeks = project.modified_at <= 2.weeks.ago
+          
+          if not (project_is_done and modified_within_2_weeks) and not (project_is_deleted and modified_within_3_days)
 	%>
           <tr class="project-item" id="<%= project.id %>">
             <td id="priority-<%= @user.id.to_s + '-' + project.id.to_s %>">
