@@ -43,7 +43,7 @@
           # If the task is marked done, we want to make that more obvious
           # than just a single field; add strikethrough on more columns
           extra_class = ''
-          if Constants.get_status_by_id(project.status)[:id] == Constants.done
+          if Constants.get_status_by_id(project.status)[:id] == Constants.done or Constants.get_status_by_id(project.status)[:id] == Constants.deleted
             extra_class="status " + Constants.get_status_css_class_by_id(project.status)
           end
         %>
