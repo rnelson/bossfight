@@ -20,7 +20,7 @@
 .status.in-progress {
     font-style: italic;
 }
-.status.done {
+.status.done, .status.deleted {
     text-decoration: line-through;
     color: #aaa;
 }

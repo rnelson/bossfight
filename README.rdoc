@@ -15,4 +15,5 @@ Setup:
 * <tt>rake db:setup</tt>
 * <tt>rake db:seed</tt>
 * <tt>RAILS_ENV=production rake assets:precompile</tt> (if production)
+* Start the server (e.g., <tt>rails -s</tt>, or a real deployment tool)
 * Log in with email <em>admin@example.com</em>, password <em>password</em>

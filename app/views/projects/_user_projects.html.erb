@@ -43,12 +43,17 @@
           # If the task is marked done, we want to make that more obvious
           # than just a single field; add strikethrough on more columns
           extra_class = ''
-          if Constants.get_status_by_id(project.status)[:id] == Constants.done
+          if Constants.get_status_by_id(project.status)[:id] == Constants.done or Constants.get_status_by_id(project.status)[:id] == Constants.deleted
             extra_class="status " + Constants.get_status_css_class_by_id(project.status)
           end
         %>
 	<%
-          if not (Constants.get_status_by_id(project.status)[:id] == Constants.done and project.modified_at <= 2.weeks.ago)
+          project_is_done = Constants.get_status_by_id(project.status)[:id] == Constants.done
+          project_is_deleted = Constants.get_status_by_id(project.status)[:id] == Constants.deleted
+          modified_within_3_days = project.modified_at <= 3.days.ago
+          modified_within_2_weeks = project.modified_at <= 2.weeks.ago
+          
+          if not (project_is_done and modified_within_2_weeks) and not (project_is_deleted and modified_within_3_days)
 	%>
           <tr class="project-item" id="<%= project.id %>">
             <td id="priority-<%= @user.id.to_s + '-' + project.id.to_s %>">
