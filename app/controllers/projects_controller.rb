@@ -53,7 +53,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to projects_url, notice: "Project #{@project.name} was successfully update." }
+        format.html { redirect_to projects_url, notice: "Project #{@project.name} was successfully updated." }
         format.json { render :show, status: :ok, location: @project }
       else
         format.html { render :edit }
