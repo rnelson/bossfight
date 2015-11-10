@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get 'sessions/destroy'
 
   post 'projects/prioritize' => 'projects#update_priorities'
+  get 'projects/completed' => 'projects#completed'
+  get 'projects/all' => 'projects#all'
 
   resources :users
   resources :projects

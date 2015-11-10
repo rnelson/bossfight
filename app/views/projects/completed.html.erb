@@ -5,19 +5,7 @@
      # List projects for this user
      @user = User.find_by_id(session[:user_id])
   %>
-  <%= render 'user_projects', projects: @user.recent_projects %>
-
-
-
-  <%
-     # List projects for each employee
-     Boss.employees_for(session[:user_id]).each do |employee|
-       @user = employee
-       if @user.id != session[:user_id]
-  %>
-      <%= render 'user_projects', projects: @user.recent_projects %>
-    <% end %>
-  <% end %>
+  <%= render 'user_projects', projects: @user.completed_projects %>
 
   <hr>
 

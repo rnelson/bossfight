@@ -1,7 +1,8 @@
 <% if @user.projects.count > 0 %>
   <div id="user-projects">
     <% if @user.id == session[:user_id] %>
-      <h1>My Projects</h1>
+		<h1>My Projects</h1>
+        <h5><%= link_to 'Default', projects_path %> <%= link_to 'Completed', projects_completed_path %> <%= link_to 'All', projects_all_path %></h5>
     <% else %>
       <h1><%= @user.name.possessive %> Projects</h1>
     <% end %>
@@ -21,7 +22,7 @@
         </tr>
       </thead>
       <tbody>
-      <% @user.recent_projects.each do |project| %>
+      <% @projects.each do |project| %>
         <%
           created_text = ''
           updated_text = ''
@@ -87,7 +88,7 @@
     <%= form_tag(projects_prioritize_path) do %>
       <div class="hidden">
         <%= hidden_field_tag(:employee_id, @user.id) %>
-        <% @user.recent_projects.each do |project| %>
+        <% @projects.each do |project| %>
           <%
              field_name = 'priorities[' + project.id.to_s + ']'
              field_id = @user.id.to_s + '-' + project.id.to_s

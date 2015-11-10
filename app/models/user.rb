@@ -39,4 +39,12 @@ class User < ActiveRecord::Base
                   2.months.ago
     ).order(:priority)
   end
+
+  def completed_projects
+    Project.where('employee_id=? AND status=?', id, Constants.get_status_id(:done)).order(:updated_at)
+  end
+
+  def all_projects
+    Project.where('employee_id=?', id).order(:updated_at)
+  end
 end
