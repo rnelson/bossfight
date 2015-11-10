@@ -12,6 +12,7 @@ User.create(first_name: 'Admin',
              email: 'admin@example.com',
              access_level: Constants.get_access_id(:admin),
              password: 'password', password_confirmation: 'password')
+Boss.create(boss_id: 1, employee_id: 1)
 
 # Create a default category
 Category.create(name: 'Default')
