@@ -9,18 +9,10 @@ class ProjectsController < ApplicationController
 
   # GET /projects/completed
   def completed
-    @user = User.find_by_id(session[:user_id])
-    @projects = @user.completed_projects
-
-    render :completed, projects: @projects
   end
 
   # GET /projects/all
   def all
-    @user = User.find_by_id(session[:user_id])
-    @projects = @user.all_projects
-
-    render :all, projects: @projects
   end
 
   # GET /projects/1

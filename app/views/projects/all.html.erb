@@ -4,8 +4,9 @@
   <%
      # List projects for this user
      @user = User.find_by_id(session[:user_id])
+     @projects = @user.all_projects
   %>
-  <%= render 'user_projects', projects: @user.all_projects %>
+  <%= render 'user_projects' %>
 
   <hr>
 
