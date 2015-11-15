@@ -13,8 +13,9 @@
      Boss.employees_for(session[:user_id]).each do |employee|
        @user = employee
        if @user.id != session[:user_id]
+         @projects = @user.recent_projects
   %>
-      <%= render 'user_projects', projects: @user.recent_projects %>
+      <%= render 'user_projects' %>
     <% end %>
   <% end %>
 
