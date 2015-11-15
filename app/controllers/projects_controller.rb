@@ -9,10 +9,12 @@ class ProjectsController < ApplicationController
 
   # GET /projects/completed
   def completed
+    @show_all = true
   end
 
   # GET /projects/all
   def all
+    @show_all = true
   end
 
   # GET /projects/1
