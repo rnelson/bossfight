@@ -54,7 +54,10 @@
           modified_within_3_days = project.modified_at <= 3.days.ago
           modified_within_2_weeks = project.modified_at <= 2.weeks.ago
           
-          if @show_all or (not (project_is_done and modified_within_2_weeks) and not (project_is_deleted and modified_within_3_days))
+		  show = (not (project_is_done and modified_within_2_weeks) and not (project_is_deleted and modified_within_3_days))
+		  show = true if @show_all
+
+		  if show
 %>
           <tr class="project-item" id="<%= project.id %>">
             <td id="priority-<%= @user.id.to_s + '-' + project.id.to_s %>">
