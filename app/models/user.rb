@@ -28,7 +28,11 @@ class User < ActiveRecord::Base
   end
 
   def projects
-    Project.where('employee_id=? AND status>=?', id, Constants.get_status_id(:deleted)).order(:priority)
+    query = 'employee_id=? AND status>=?'
+    Project.where(query,
+                  id,
+                  Constants.get_status_id(:deleted)
+    ).order(:priority)
   end
 
   def recent_projects
@@ -41,10 +45,17 @@ class User < ActiveRecord::Base
   end
 
   def completed_projects
-    Project.where('employee_id=? AND status=?', id, Constants.get_status_id(:done)).order(:updated_at)
+    query = 'employee_id=? AND status=?'
+    Project.where(query,
+                  id,
+                  Constants.get_status_id(:done)
+    ).order(:updated_at)
   end
 
   def all_projects
-    Project.where('employee_id=?', id).order(:updated_at)
+    query = 'employee_id=?'
+    Project.where(query,
+                  id
+    ).order(:updated_at)
   end
 end
