@@ -47,6 +47,7 @@ class User < ActiveRecord::Base
   end
 
   def completed_projects
+    @show_all = true
     query = 'employee_id=? AND status=?'
     Project.where(query,
                   id,
@@ -55,6 +56,7 @@ class User < ActiveRecord::Base
   end
 
   def all_projects
+    @show_all = true
     query = 'employee_id=?'
     Project.where(query,
                   id
