@@ -36,6 +36,8 @@ class User < ActiveRecord::Base
   end
 
   def recent_projects
+    #if not (project_is_done and modified_within_2_weeks) and not (project_is_deleted and modified_within_3_days)
+
     query = 'employee_id=? AND status>=? AND updated_at>=?'
     Project.where(query,
                   id,
