@@ -2,7 +2,7 @@
 
 Bossfight uses the following:
 
-* Ruby 2.2.0
+* Ruby 2.7.1
 * SQlite3
 
 Setup:
